@@ -190,9 +190,9 @@ mixin popup(id)
         +e.INPUT.input(type='text' name='name' placeholder='Ваше имя')#name-input
         +e.INPUT.input(type='tel' name='tel' placeholder='Телефон')
       +e.checkbox-group
-        +checkbox('opt1', 'opts', 'Хочу приобрести ёжика').__checkbox
-        +checkbox('opt2', 'opts', 'Хочу узнать подробности об уходе').__checkbox
-        +checkbox('opt3', 'opts', 'Хочу узнать подробности о покупке').__checkbox
+        +checkbox('opt1', 'opt1', 'Хочу приобрести ёжика').__checkbox
+        +checkbox('opt2', 'opt2', 'Хочу узнать подробности об уходе').__checkbox
+        +checkbox('opt3', 'opt3', 'Хочу узнать подробности о покупке').__checkbox
       +button('Отправить', 'submit').__button#submit-btn
     +e.P.text Нажимая кнопку ОТПРАВИТЬ вы соглашаетесь с 
       +e.A.link(href='#') условиями обработки данных

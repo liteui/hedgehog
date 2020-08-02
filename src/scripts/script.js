@@ -44,7 +44,7 @@ $(document).ready(function() {
     var set2 = set1 && $('#opt2').prop('checked');
     var set3 = $('#opt3').prop('checked');
 
-    if (target.name === 'opts') {
+    if (target.name.indexOf('opt') !== -1) {
       $('#submit-btn').prop('disabled', set1);
       $('#opt2').prop('disabled', set2);
       $('#name-input').prop('disabled', set3);
