@@ -98,7 +98,6 @@
   &__box {
     font-size: 10px;
     color: $color-5;
-    display: flex;
 
     @include media(xs) {
       font-size: 12px;
@@ -125,10 +124,6 @@
       z-index: 1;
     }
 
-    @include media(lg) {
-      display: flex;
-    }
-
     @include media(xl) {
       padding: 28px 30px 30px;
     }
@@ -147,6 +142,18 @@
       @include media(md) {
         display: inline-block;
       }
+    }
+  }
+
+  &__items {
+    display: flex;
+
+    @include media(md) {
+      display: block;
+    }
+    
+    @include media(lg) {
+      display: flex;
     }
   }
 

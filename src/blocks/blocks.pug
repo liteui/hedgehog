@@ -83,15 +83,16 @@ mixin info(items)
       svg
         use(xlink:href='assets/img/sprite.svg#info')
     +e.box
-      each item in items
-        +e.item
-          +e.item-icon._mobile
-            svg
-              use(xlink:href='assets/img/sprite.svg#' + item.icon)
-          +e.item-icon._desktop
-            svg
-              use(xlink:href='assets/img/sprite.svg#' + item.icon + '-white')
-          = item.text
+      +e.items
+        each item in items
+          +e.item
+            +e.item-icon._mobile
+              svg
+                use(xlink:href='assets/img/sprite.svg#' + item.icon)
+            +e.item-icon._desktop
+              svg
+                use(xlink:href='assets/img/sprite.svg#' + item.icon + '-white')
+            = item.text
 
 mixin card(color, badge, info, title, text, oldprice, price, image)
   +b.card&attributes(attributes)
