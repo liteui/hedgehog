@@ -1,0 +1,197 @@
+mixin button(text, type, href)
+  if type === 'submit'
+    +b.BUTTON.button(type='submit')&attributes(attributes)
+      span= text
+  else
+    +b.A.button(href=href)&attributes(attributes)
+      span= text
+
+mixin menu(items)
+  +b.menu&attributes(attributes)
+    +e.A.close(href='#')
+    +e.A.logo(href='/')
+      svg
+        use(xlink:href='assets/img/sprite.svg#logo')
+    +e.UL.list
+      each item in items
+        +e.LI.item
+          +e.A.link(class=(item.sublist ? '_submenu' : '') href='#')= item.text
+            if item.sublist
+              +e.SPAN.link-arrow
+                svg
+                  use(xlink:href='assets/img/sprite.svg#arrow')
+          if item.sublist
+            +e.UL.sublist
+              each subitem in item.sublist
+                +e.LI.subitem
+                  +e.A.link(href='#')= subitem
+    +e.A.phone(href='tel:+79655698998')
+      span позвоните мне
+      br
+      +e.SPAN.num +7 (965) 569-89-98
+
+mixin header(items)
+  +b.HEADER.header
+    +e.container.container._wide
+      +e.menu-wrapper
+        +e.A.menu-btn(href='#')
+          span
+          span
+          span
+        +menu(items).__menu
+      +e.A.logo(href='/')
+        svg
+          use(xlink:href='assets/img/sprite.svg#logo')
+      +e.actions
+        +e.phone
+          +e.A.phone-btn(href='tel:+79655698998')
+            svg
+              use(xlink:href='assets/img/sprite.svg#phone')
+          +e.A.phone-link(href='tel:+79655698998')
+            span позвоните мне
+            br
+            +e.SPAN.num +7 (965) 569-89-98
+        +e.A.cart(href='#')
+          svg
+            use(xlink:href='assets/img/sprite.svg#cart')
+          +e.SPAN.cart-badge 1
+
+mixin topscreen()
+  +b.topscreen
+    .container
+      +e.IMG.heading(src='assets/img/heading.svg' alt='Ёжики')
+      +e.P.subheading тоже любят молоко
+      +e.P.text Заведите себе ёжика. Он всегда выслушает, не будет мяукать в 5 утра и царапать вашу мебель.
+      +button('Купить ёжика', 'link', '#popup').__button(data-fancybox='popup')
+    +e.side-effect._left
+    +e.side-effect._right
+    +e.IMG.side-img._left._desktop(src='assets/img/hedgehog-2-2.png' alt='Ёжик')
+    +e.IMG.side-img._right._mobile(src='assets/img/hedgehog-1-1.png' alt='Ёжик')
+    +e.IMG.side-img._right._desktop(src='assets/img/hedgehog-1-2.png' alt='Ёжик')
+
+mixin advantage(color, icon, title, desc)
+  +b.advantage
+    +e.round(class='_' + color)
+      +e.SVG.icon(class='_' + icon)
+        use(xlink:href='assets/img/sprite.svg#' + icon)
+    +e.P.title= title
+    +e.P.desc= desc
+
+mixin info(items)
+  +b.info&attributes(attributes)
+    +e.icon
+      svg
+        use(xlink:href='assets/img/sprite.svg#info')
+    +e.box
+      each item in items
+        +e.item
+          +e.item-icon._mobile
+            svg
+              use(xlink:href='assets/img/sprite.svg#' + item.icon)
+          +e.item-icon._desktop
+            svg
+              use(xlink:href='assets/img/sprite.svg#' + item.icon + '-white')
+          = item.text
+
+mixin card(color, badge, info, title, text, oldprice, price, image)
+  +b.card&attributes(attributes)
+    +e.bg(class='_' + color)
+    if badge
+      +e.badge= badge
+    if info
+      +info([{icon: 'syringe', text: 'привит'}, {icon: 'heart', text: '1235'}]).__info
+    +e.content
+      +e.P.title= title
+      +e.P.text= text
+      if oldprice
+        +e.P.oldprice= oldprice
+      +e.P.price= price
+    +e.IMG.image._mobile(src=image.src + '-1.png' alt=image.alt)
+    +e.IMG.image._desktop(src=image.src + '-2.png' alt=image.alt)
+    +e.A.add(href='#')
+      svg
+        use(xlink:href='assets/img/sprite.svg#plus')
+
+mixin section()
+  +b.SECTION.section
+    +e.bg
+      +e.side-effect
+    +e.side-ring._left
+    +e.side-ring._right
+    +e.container.container
+      +e.advantages
+        +e.advantages-item
+          +advantage('c1', 'hedgehog', 'Разведение ежиков', 'Собственная ферма, уход и содержание')
+        +e.advantages-item
+          +advantage('c2', 'syringe', 'Здоровье', 'Всегда прививаем и вовремя обследуем ваших будущих питомцев')
+        +e.advantages-item
+          +advantage('c3', 'heart', 'Любовь и забота', 'Каждому ёжику мы дарим много внимания')
+      +e.cards
+        +e.cards-item
+          +card('c1', '-50%', true, 'Ежик “Евгений”', 'Очень любит сладости. Маленький сладкоежка=) Мы называем его так между собой. Ручной, любит внимаение', '3 000 ₽', '1 500 ₽', {src: 'assets/img/hedgehog-card', alt: 'Ёжик', side: true})._btitle._hedgehog.__card
+        +e.cards-item
+          +card('c2', '-50%', true, 'Ежик “Максим”', 'Очень любит сладости. Маленький сладкоежка=) Мы называем его так между собой. Ручной, любит внимаение', '3 000 ₽', '1 500 ₽', {src: 'assets/img/hedgehog-card', alt: 'Ёжик', side: true})._hedgehog.__card
+        +e.cards-item
+          +card('c7', '', false, 'Корм для ёжиков', 'Очень любит сладости. Маленький сладкоежка=) Мы называем его так между собой. Ручной, любит внимаение', '', '500 ₽', {src: 'assets/img/food', alt: 'Корм'}).__card
+
+mixin footer(items)
+  +b.FOOTER.footer
+    +e.container.container._wide
+      +e.A.logo(href='/')
+        svg
+          use(xlink:href='assets/img/sprite.svg#logo')
+      +e.UL.list
+        each item in items
+          +e.LI.item
+            +e.A.link(href='#')= item
+      +e.UL.social-list
+        +e.LI.social-item
+          +e.A.social-link(href='#')
+            svg
+              use(xlink:href='assets/img/sprite.svg#instagram')
+        +e.LI.social-item
+          +e.A.social-link(href='#')
+            svg
+              use(xlink:href='assets/img/sprite.svg#facebook')
+        +e.LI.social-item
+          +e.A.social-link(href='#')
+            svg
+              use(xlink:href='assets/img/sprite.svg#twitter')
+      +e.phone
+        +e.A.phone-link(href='tel:+79655698998')
+          span позвоните мне
+          br
+          +e.SPAN.num +7 (965) 569-89-98
+      +e.P.copyright Все права защищены.
+        br
+        | Указанная стоимость товаров и условия их приобретения действительны на текущую дату.
+
+mixin checkbox(id, name, label)
+  +b.checkbox&attributes(attributes)
+    +e.INPUT.input(id=id type='checkbox' name=name value='true')
+    +e.LABEL.label(for=id)= label
+      +e.box
+        +e.icon
+          svg
+            use(xlink:href='assets/img/sprite.svg#check')
+    
+
+mixin popup(id)
+  +b.popup(id=id)
+    +e.P.heading Получить бесплатную 
+      br
+      | консультацию
+    +e.FORM.form
+      +e.SELECT.select(name='location')
+        option Санкт-Петербург
+        option Москва
+      +e.input-group
+        +e.INPUT.input(type='text' name='name' placeholder='Ваше имя')#name-input
+        +e.INPUT.input(type='tel' name='tel' placeholder='Телефон')
+      +e.checkbox-group
+        +checkbox('opt1', 'opts', 'Хочу приобрести ёжика').__checkbox
+        +checkbox('opt2', 'opts', 'Хочу узнать подробности об уходе').__checkbox
+        +checkbox('opt3', 'opts', 'Хочу узнать подробности о покупке').__checkbox
+      +button('Отправить', 'submit').__button#submit-btn
+    +e.P.text Нажимая кнопку ОТПРАВИТЬ вы соглашаетесь с 
+      +e.A.link(href='#') условиями обработки данных

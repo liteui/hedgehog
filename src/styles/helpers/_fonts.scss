@@ -1,0 +1,25 @@
+@mixin font-face-otf($font-family, $font-style, $font-weight, $font-name) { 
+  @font-face {
+    font-family: $font-family;
+    font-style: $font-style;
+    font-weight: $font-weight;
+    src: url('../fonts/' + $font-name + '.otf') format('opentype');
+  }
+}
+
+@mixin font-face($font-family, $font-style, $font-weight, $font-name) { 
+  @font-face {
+    font-family: $font-family;
+    font-style: $font-style;
+    font-weight: $font-weight;
+    src: url('../fonts/' + $font-name + '.woff2') format('woff2'),
+         url('../fonts/' + $font-name + '.woff') format('woff');
+  }
+}
+
+@include font-face-otf('Raleway', normal, 400, 'Raleway-Regular');
+@include font-face-otf('Raleway', normal, 500, 'Raleway-Medium');
+@include font-face-otf('Raleway', normal, 700, 'Raleway-Bold');
+
+@include font-face('Cormorant Infant', normal, 400, 'CormorantInfant-Regular');
+@include font-face('Cormorant Infant', normal, 700, 'CormorantInfant-Bold');

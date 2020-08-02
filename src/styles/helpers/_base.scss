@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  font-family: $font-1;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  line-height: 1.2;
+  background-color: #fff;
+  color: #000;
+}
+
+.page {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1240px;
+  padding: 0 20px;
+  margin: 0 auto;
+
+  @include media(md) {
+    padding: 0 30px;
+  }
+
+  &_wide {
+    max-width: 1860px;
+  }
+}

@@ -1,0 +1,27 @@
+include ../../node_modules/bemto.pug/bemto
+include ../blocks/blocks
+
+<!DOCTYPE html>
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Document
+    link(rel="stylesheet" href="assets/css/jquery.fancybox.min.css")
+    link(rel="stylesheet" href="assets/css/style.min.css")
+  body
+    .page
+      +header([
+        {text: 'Каталог', sublist: ['Ёжики', 'Питание', 'Переноски', 'Лекарства']},
+        {text: 'О нас'},
+        {text: 'Контакты'},
+        {text: 'Галерея'}
+      ])
+      +topscreen()
+      +section()
+      +footer(['Каталог', 'О нас', 'Контакты', 'Галерея'])
+      +popup('popup')
+      script(src='assets/js/jquery-3.5.1.slim.min.js')
+      script(src='assets/js/jquery.fancybox.min.js')
+      script(src='assets/js/svg4everybody.min.js')
+      script(src='assets/js/script.min.js')
